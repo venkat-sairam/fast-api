@@ -1,0 +1,6 @@
+fast-api/pyvenv.cfg
+__pycache__/main.cpython-310.pyc
+fast-api/app/__pycache__/*
+fast-api/include
+fast-api/Lib
+fast-api/Scripts
