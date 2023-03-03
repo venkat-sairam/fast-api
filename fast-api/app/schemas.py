@@ -10,6 +10,16 @@ class Post(BaseModel):  # Schema of the Request body
     published: bool = True
 
 
+class ResponseToUser(BaseModel):
+    id: Optional[int]
+    email: Optional[EmailStr]
+    created_at: Optional[datetime]
+    message: Optional[str]
+
+    class Config:
+        orm_mode = True
+
+
 class PostBase(BaseModel):
 
     title: str
@@ -26,6 +36,7 @@ class PostResponse(PostBase):
     id: int
     owner_id: int
     created_at: datetime
+    owner: ResponseToUser
 
     class Config:
         orm_mode = True
