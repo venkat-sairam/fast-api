@@ -1,0 +1,50 @@
+#====================================================================================================================
+# Intro About OAuth2
+#====================================================================================================================
+
+"""
+OAuth2 is a specification that defines several ways to handle authentication and authorization.
+OpenAPI defines the following security schemes:
+    1. apiKey
+    2. http
+    3. OAuth2 --  all the OAuth2 ways to handle security (called "flows")
+        Password Flow can be used to Handle authentication in the same application directly.
+
+"""
+#====================================================================================================================
+# PASSWORD FLOW IN OAuth2
+#====================================================================================================================
+  """
+    PASSWORD Flow in Oauth2
+        1. User sends username and password to an endpoint i.e tokenUrl
+        2. API Verifies the given data and responds with a Bearer Token.
+        3. User stores the token to access some other endpoints.
+        4. Let's say user wants to access the Dashboard, he sends a request header Authorization with a value of Bearer plus the token..
+    =======
+    NOTE:   
+    =======
+    OAuth2 specifies that when using the "password flow" (that we are using) the client/user MUST send a username and password fields as form data.
+
+    """
+#====================================================================================================================
+# FAST API OAuth2PasswordBearer Guide
+#====================================================================================================================
+"""
+    # Here URL -> /token will be the one that the client should use to get the token. 
+    oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+
+    The oauth2_scheme variable is an instance of OAuth2PasswordBearer, but it is also a "callable".
+    So, it can be used with Depends.
+
+    def read_items(token: str = Depends(oauth2_scheme)):
+    return {"token": token}
+
+
+    It will go and look in the request for that Authorization header, check if the value is Bearer plus some token, and will return the token as a str.
+
+    If it doesn't see an Authorization header, or the value doesn't have a Bearer token, it will respond with a 401 status code error (UNAUTHORIZED) directly.
+
+"""  
+
+
+
