@@ -24,6 +24,7 @@ class PostCreate(PostBase):
 class PostResponse(PostBase):
 
     id: int
+    owner_id: int
     created_at: datetime
 
     class Config:
@@ -31,7 +32,8 @@ class PostResponse(PostBase):
 
 
 class PostAllResponses(PostBase):
-
+    id: str
+    owner_id: str
     created_at: datetime
 
     class Config:
