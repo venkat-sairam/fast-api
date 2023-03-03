@@ -8,9 +8,8 @@ router = APIRouter(prefix="/posts")
 
 
 @router.get("/")
-def get_all_posts(db: Session = Depends(get_db), response_model=schemas.PostAllResponses,  limitPosts: int = 5):
-
-    posts = db.query(models.Post).limit(limitPosts).all()
+def get_all_posts(db: Session = Depends(get_db), response_model=schemas.PostAllResponses):
+    posts = db.query(models.Post).all()
 
     return posts
 
